@@ -53,14 +53,14 @@ ipcMain.on('start-login', async (event) => {
         await page.setCookie({
             name: 'hashedMacAddress',
             value: hashedMacAddress,
-            domain: 'localhost',
+            domain: 'lms.test.recqarz.com',
             path: '/',
             httpOnly: true,
-            secure: false // Set to true for HTTPS
+            secure: true // Set to true for HTTPS
         });
 
         // Navigate to the login page and perform login
-        await page.goto('http://localhost:3001/login');
+        await page.goto('https://lms.test.recqarz.com/login');
         await page.waitForSelector('.input-boxes');
         await page.type('.input-boxes .input-box input[type="email"]', 'admin@recqarz.com');
         await page.type('.input-boxes .input-box.passw input[type="password"]', 'Admin@123');

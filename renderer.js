@@ -17,5 +17,5 @@ ipcRenderer.on('login-result', (event, result) => {
 
 // Receive the result from the main process for token generation
 ipcRenderer.on('token-result', (event, token) => {
-    document.getElementById('result').innerText = `Generated Hashed MAC Address: ${token}`;
+    document.getElementById('result').innerText = `Generated token: ${token}`;
 });
