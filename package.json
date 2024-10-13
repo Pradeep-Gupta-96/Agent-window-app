@@ -2,7 +2,7 @@
   "name": "agent-app",
   "version": "1.0.0",
   "description": "An agent app for specific device login automation",
-  "author": "Your Name",
+  "author": "Pradeep",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
@@ -10,8 +10,8 @@
     "dist": "electron-builder"
   },
   "build": {
-    "appId": "com.yourcompany.agentapp",
-    "productName": "Recqarz",
+    "appId": "com.Recqarz.agentapp",
+    "productName": "Recqarz Agent",
     "directories": {
       "buildResources": "assets"
     },
@@ -19,19 +19,23 @@
       "**/*"
     ],
     "win": {
+      "icon": "assets/icon.ico",
       "target": "nsis"
     },
     "mac": {
+      "icon": "assets/icon.icns",
       "target": "dmg"
     },
     "linux": {
+      "icon": "assets/icon.png",
       "target": "AppImage"
     }
   },
   "dependencies": {
     "crypto": "^1.0.1",
     "os": "^0.1.2",
-    "puppeteer": "^23.5.2"
+    "puppeteer": "^23.5.2",
+    "puppeteer-core": "^23.5.3"
   },
   "devDependencies": {
     "electron": "^32.2.0",

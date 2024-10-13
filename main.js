@@ -2,7 +2,9 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const os = require('os');
 const crypto = require('crypto');
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core'); // Use puppeteer-core to avoid Chromium download
+
+const CHROME_PATH = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'; // Update path as needed
 
 // Create the main window
 function createWindow() {
@@ -45,9 +47,15 @@ ipcMain.on('start-login', async (event) => {
         console.log(`Original MAC Address: ${macAddress}`);
         console.log(`Hashed MAC Address: ${hashedMacAddress}`);
 
-        // Puppeteer login logic
-        const browser = await puppeteer.launch({ headless: false, args: ['--start-maximized'], defaultViewport: null });
-        const page = await browser.newPage();
+        // Puppeteer login logic using real Chrome
+        const browser = await puppeteer.launch({
+        headless: false, // Open Chrome in visible mode
+        executablePath: CHROME_PATH, // Path to your local Chrome installation
+        args: ['--start-maximized'],
+        defaultViewport: null,
+    });
+    
+    const page = await browser.newPage();
 
         // Set hashed MAC address as a cookie
         await page.setCookie({
