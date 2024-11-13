@@ -4,7 +4,8 @@ const os = require('os');
 const crypto = require('crypto');
 const puppeteer = require('puppeteer-core'); // Use puppeteer-core to avoid Chromium download
 
-const CHROME_PATH = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'; // Update path as needed
+// const CHROME_PATH = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'; // Update path as needed
+const CHROME_PATH = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'; // Update path as needed
 
 // Create the main window
 function createWindow() {
@@ -61,17 +62,17 @@ ipcMain.on('start-login', async (event) => {
         await page.setCookie({
             name: 'hashedMacAddress',
             value: hashedMacAddress,
-            domain: 'lms.test.recqarz.com',
+            domain: 'lms.recqarz.com',
             path: '/',
             httpOnly: true,
             secure: true // Set to true for HTTPS
         });
 
         // Navigate to the login page and perform login
-        await page.goto('https://lms.test.recqarz.com/login');
+        await page.goto('https://lms.recqarz.com/login');
         await page.waitForSelector('.input-boxes');
-        await page.type('.input-boxes .input-box input[type="email"]', 'admin@recqarz.com');
-        await page.type('.input-boxes .input-box.passw input[type="password"]', 'Admin@123');
+        await page.type('.input-boxes .input-box input[type="email"]', 'ops@recqarz.com');
+        await page.type('.input-boxes .input-box.passw input[type="password"]', 'Ops@123#');
         await page.click('.btn-row- button');
         await page.waitForNavigation();
 
